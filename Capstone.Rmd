@@ -176,39 +176,6 @@ weekday_summary <- trips_v3 %>%
   summarize(avg_duration = mean(duration), median_duration = median(duration), max_duration = max(duration), min_duration = min(duration))
 ```
 
-# Results
-Customer Type | Avg Ride Length (seconds) | Med Ride Length (seconds) | Max Ride Length (seconds) | Min Ride Length (seconds)
---- | --- | --- | --- | ---
-Casual | 1974 | 1016 | 3356649 | 0
-Member | 811 | 598 | 573467 | 0
-</br>
-
-The results are as follows by casual customers by weekdays 
-</br>
-
-Weekday | Avg Ride Length (seconds) | Med Ride Length (seconds) | Max Ride Length (seconds) | Min Ride Length (seconds)
---- | --- | --- | --- | ---
-Sunday | 2282 | 1185 | 3235296 | 0
-Monday | 1960 | 1016 | 1900899 | 0
-Tuesday | 1763 | 902 | 2335375 | 0
-Wednesday | 1710 | 881 | 2337785 | 0
-Thursday | 1685 | 864 | 2946429 | 0
-Friday | 1889 | 949 | 3341501 | 0
-Saturday | 2125 | 1135 | 3356649 | 0
-</br>
-
-The results are as follows by member customers by weekdays </br>
-Weekday | Avg Ride Length (seconds) | Med Ride Length (seconds) | Max Ride Length (seconds) | Min Ride Length (seconds)
---- | --- | --- | --- | ---
-Sunday | 923 | 672 | 89995 | 0
-Monday | 777 | 572 | 89993 | 0
-Tuesday | 764 | 569 | 89996 | 0
-Wednesday | 768 | 575 | 573467 | 0
-Thursday | 760 | 569 | 89996 | 0
-Friday | 796 | 586 | 542972 | 0
-Saturday | 905 | 669 | 89996 | 0
-</br>
-
 # Visualization
 
 ``` {r Data Visualization, echo = FALSE, warning = FALSE}
@@ -219,6 +186,7 @@ trips_v3 %>%
   summarise(number_of_rides = n(), average_duration = mean(duration)) %>%
   arrange(member_casual, weekday)
   geom_col(position = "dodge")
+  
 ## Plot weekday's ride count by membership type
 trips_v3 %>%
   mutate(weekday = wday(started_at, label = TRUE)) %>%
@@ -230,6 +198,7 @@ trips_v3 %>%
   ggtitle("E-Bike Memebrship Type's Ride Count Summary") +
   labs (x = "Weekdays", y = "# of Rides")
   ggsave("ride_count.jpg", width = 2000, height = 1000, units = c("px"))
+  
 ##  Plot weekday's average duration
 trips_v3 %>%
   mutate(weekday = wday(started_at, label = TRUE)) %>%
@@ -242,7 +211,7 @@ trips_v3 %>%
   labs (x = "Weekdays", y = "Ride Duration (seconds)")
   ggsave("ridetime_avg.jpg", width = 2000, height = 1000, units = c("px"))
 ```
-```
+
 # Conclusion:
 Based on the data analysis, I made the following conclusions:
 
